@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalog</title>
-</head>
-<body>
-    <% for (let item of catalog) { %>
-        <!-- <li>id: <%= item.id %>, item: <%= item.product %>, size: <%= item.size %>, price: <%= item.price %>  </li> -->
-        <a href="/skills/<%= item.id %>"><%= item.id %></a>
-    <% } %>  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Dev Skills</title>
+  </head>
+  <body>
+    <% for (let skill of skills) { %>
+    <li><a href="/skills/<%= skill.id %>"><%= skill.skill %></a></li>
+    <% } %>
+    <a href="/skills/new">Add New Skill</a>
+  </body>
 </html>

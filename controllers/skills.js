@@ -1,18 +1,29 @@
 module.exports = {
-    index,
-    show,
+  index,
+  show,
+  newSkill,
+  addSkill,
 };
 
-const Catalog = require('../models/skills');
+const Skills = require("../models/skills");
 
 function index(req, res) {
-    res.render('skills', {
-        catalog: Catalog.getCatalog(),
-    });
-};
+  res.render("skills", {
+    skills: Skills.getDevSkills(),
+  });
+}
 
 function show(req, res) {
-    res.render('show', {
-        item: Catalog.getOne(req.params.id),
-    });
-};
+  res.render("show", {
+    skill: Skills.getOneSkill(req.params.id),
+  });
+}
+
+function newSkill(req, res) {
+  res.render("new");
+}
+
+function addSkill(req, res) {
+  Skills.addSkill(req.body.skill, req.body.type);
+  res.redirect("/skills");
+}

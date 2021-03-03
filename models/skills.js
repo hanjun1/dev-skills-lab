@@ -1,21 +1,39 @@
-const catalog = [
-    {id:'001', product:'Gatorade Cool Blue', size: '950ml', price:2.99},
-    {id:'002', product:'Gatorade Cool Blue', size: '750ml', price:2.49},
-    {id:'003', product:'Gatorade Lemon Lime', size: '950ml', price:2.99},
-    {id:'004', product:'Gatorade Artic Blitz', size: '550ml', price:1.99},
-    {id:'005', product:'Gatorade Glacial Cherry', size: '550ml', price:1.99},
-    {id:'006', product:'Gatorade Kiwi Strawberry', size: '950ml', price:2.99},
+module.exports = {
+  getDevSkills,
+  getOneSkill,
+  addSkill,
+};
+
+const devSkills = [
+  { id: "001", skill: "HTML/CSS", type: "language" },
+  { id: "002", skill: "JavaScript", type: "language" },
+  { id: "003", skill: "NodeJS", type: "runtime environment" },
+  { id: "004", skill: "Express", type: "framework" },
+  { id: "005", skill: "Java", type: "language" },
+  { id: "006", skill: "Python", type: "language" },
 ];
 
-function getCatalog() {
-    return catalog;
+function getDevSkills() {
+  return devSkills;
 }
 
-function getOne(id) {
-    return catalog.find(item => item.id === id);
+function getOneSkill(id) {
+  return devSkills.find((skill) => skill.id === id);
 }
 
-module.exports = {
-    getCatalog,
-    getOne,
-};
+function addSkill(skill, type) {
+  let id = "";
+  if (devSkills.length < 10) {
+    id += "00" + (devSkills.length + 1);
+  } else if (devSkills.length < 100) {
+    id += "0" + (devSkills.length + 1);
+  } else {
+    id += devSkills.length + 1;
+  }
+  let newSkill = {
+    id,
+    skill,
+    type,
+  };
+  devSkills.push(newSkill);
+}
