@@ -2,6 +2,8 @@ module.exports = {
   getDevSkills,
   getOneSkill,
   addSkill,
+  deleteSkill,
+  updateSkill,
 };
 
 const devSkills = [
@@ -22,18 +24,22 @@ function getOneSkill(id) {
 }
 
 function addSkill(skill, type) {
-  let id = "";
-  if (devSkills.length < 10) {
-    id += "00" + (devSkills.length + 1);
-  } else if (devSkills.length < 100) {
-    id += "0" + (devSkills.length + 1);
-  } else {
-    id += devSkills.length + 1;
-  }
+  let id = Date.now() % 1000000;
   let newSkill = {
-    id,
+    id: id.toString(),
     skill,
     type,
   };
   devSkills.push(newSkill);
+}
+
+function deleteSkill(id) {
+  const idx = devSkills.findIndex((skill) => skill.id === id);
+  devSkills.splice(idx, 1);
+}
+
+function updateSkill(id, updatedSkill, updatedType) {
+  let skill = getOneSkill(id);
+  skill.skill = updatedSkill;
+  skill.type = updatedType;
 }

@@ -3,6 +3,9 @@ module.exports = {
   show,
   newSkill,
   addSkill,
+  deleteSkill,
+  editSkill,
+  updateSkill,
 };
 
 const Skills = require("../models/skills");
@@ -26,4 +29,20 @@ function newSkill(req, res) {
 function addSkill(req, res) {
   Skills.addSkill(req.body.skill, req.body.type);
   res.redirect("/skills");
+}
+
+function deleteSkill(req, res) {
+  Skills.deleteSkill(req.params.id);
+  res.redirect("/skills");
+}
+
+function editSkill(req, res) {
+  res.render("edit", {
+    skill: Skills.getOneSkill(req.params.id),
+  });
+}
+
+function updateSkill(req, res) {
+  Skills.updateSkill(req.params.id, req.body.skill, req.body.type);
+  res.redirect(`/skills/${req.params.id}`);
 }
