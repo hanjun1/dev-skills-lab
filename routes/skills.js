@@ -10,7 +10,7 @@ router.get("/:id/edit", skillsCtrl.editSkill);
 
 router.post("/", skillsCtrl.addSkill);
 
-router.post("/:id", skillsCtrl.updateSkill);
+router.put("/:id", skillsCtrl.updateSkill);
 
 router.get("/:id", skillsCtrl.show);
 
